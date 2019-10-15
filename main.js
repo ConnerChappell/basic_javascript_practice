@@ -47,3 +47,6 @@ films.forEach(function(film) {
           return charID
       }
   }
+
+  const maleCharacters = people.filter(person => person.gender === "male")
+  const femaleCharacters = people.filter(person => person.gender === "female")

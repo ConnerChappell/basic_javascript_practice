@@ -15,13 +15,14 @@ try {
 }
 }
 
-const data = getPokemonData(`https://pokeapi.co/api/v2/pokemon/
-`)
+getPokemonData(`https://pokeapi.co/api/v2/pokemon/`)
+
+let mainArea = document.querySelector('main')
 
 function populateDOM(pokeArray) {
 pokeArray.forEach((pokemon) => {
-    let pokeDiv = document.createElement("div")
         console.log(pokemon)
+    let pokeDiv = document.createElement("div")
     let name = document.createElement("h2")
     let gender = document.createElement("p")
     let pic = document.createElement("img")
@@ -29,15 +30,24 @@ pokeArray.forEach((pokemon) => {
     pokeDiv.setAttribute('class', 'charDivs')
     pic.setAttribute('class', 'picDivs')
   
-    let charNum = getCharNumber(person.url)
+    let pokeNum = getPokeNumber(pokemon.url)
   
     name.textContent = pokemon.name
-    pic.src = ``
+    pic.src = `/images/${pokeNum}.png`
   
-    personDiv.appendChild(name)
-    personDiv.appendChild(gender)
-    personDiv.appendChild(pic)
+    pokeDiv.appendChild(name)
+    pokeDiv.appendChild(pic)
   
-    mainArea.appendChild(personDiv)
+    mainArea.appendChild(pokeDiv)
   })
+}
+
+function getPokeNumber(charURL) {
+    let end = charURL.lastIndexOf('/')
+    let charID = charURL.substring(end -2, end)
+    if (charID.indexOf('/') !== -1) {
+        return `00${charID.slice(1, 2)}`
+    }   else {
+        return `0${charID}`
+    }
 }

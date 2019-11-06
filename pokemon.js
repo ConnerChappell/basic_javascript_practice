@@ -31,33 +31,42 @@ function populateDOM(single_pokemon) {
     let pokeCard = document.createElement("div")
     let pokeFront = document.createElement("div")
     let pokeBack = document.createElement("div")
-    let name = document.createElement("h2")
-    let pic = document.createElement("img")
+
+    fillCardFront(pokeFront, single_pokemon)
+    fillCardBack(pokeBack, single_pokemon)
 
     pokeScene.setAttribute('class', 'scene')
     pokeCard.setAttribute('class', 'card')
-    pokeFront.setAttribute('class', 'charDivs card__face card__face--front')
-    pokeBack.setAttribute('class', 'card__face card__face--back')
-    pic.setAttribute('class', 'picDivs')
-
-    let pokeNum = getPokeNumber(single_pokemon.id)
-
-    name.textContent = `${single_pokemon.name} height: ${single_pokemon.height}`
-
-    pic.src = `/images/${pokeNum}.png`
-
-    pokeFront.appendChild(pic)
-    pokeFront.appendChild(name)
-
     pokeCard.appendChild(pokeFront)
     pokeCard.appendChild(pokeBack)
     pokeScene.appendChild(pokeCard)
 
     mainArea.appendChild(pokeScene)
 
-    pokeCard.addEventListener( 'click', function() {
+    pokeCard.addEventListener('click', function () {
         pokeCard.classList.toggle('is-flipped');
-      });
+    });
+}
+
+function fillCardFront(pokeFront, data) {
+    pokeFront.setAttribute('class', 'charDivs card__face card__face--front')
+    let name = document.createElement("p")
+    let pic = document.createElement("img")
+    pic.setAttribute('class', 'picDivs')
+    let pokeNum = getPokeNumber(data.id)
+    name.textContent = data.name
+
+    pic.src = `/images/${pokeNum}.png`
+
+    pokeFront.appendChild(name)
+    pokeFront.appendChild(pic)
+}
+
+function fillCardBack(pokeBack, data) {
+    pokeBack.setAttribute('class', 'card__face card__face--back')
+    let pokeHP = document.createElement('p')
+    pokeHP.textContent = `HP:${data.stats[5].base_stat}`
+    pokeBack.appendChild(pokeHP)
 }
 
 function getPokeNumber(id) {

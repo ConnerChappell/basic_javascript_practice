@@ -13,12 +13,14 @@ let allSenators = []
 let simpleSenators = []
 let republicans = []
 let democrats = []
+let independents = []
 
 const theData = getAPIData('senators.json').then(data => {
     allSenators = data.results[0].members
     simpleSenators = makeSimpleMap(allSenators)
     republicans = filterSenators(simpleSenators, "R")
     democrats = filterSenators(simpleSenators, "D")
+    independents - filterSenators(simpleSenators, "ID")
     populateDOM(simpleSenators)
 })
 
@@ -39,7 +41,7 @@ function makeSimpleMap(allOfThem) {
 
 // filter example
 function filterSenators(simpleList, partyAffiliation) {
-    return simpleList.filter(senator => senator.party === partyAffiliation)
+    return simpleList.filter(senator => senator.party === "partyAffiliation")
 }
 
 // reduce example
@@ -54,6 +56,12 @@ function totalVotes(senatorList) {
         return acc + senator.total_votes
     }, 0)
     return results
+}
+
+function oldestSenator(senatorList) {
+    return senatorList.reduce((oldest, senator) => {
+        return (oldest.age || 0) > senator.age ? oldest : senator
+    }, {})
 }
 
 const container = document.querySelector('.container')

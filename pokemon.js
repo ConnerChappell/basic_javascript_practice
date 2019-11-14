@@ -3,6 +3,20 @@
 // return await response.json()
 // }
 
+class Pokemon {
+    constructor(id, name) {
+      this.id = id
+      this.name = name
+    }
+  }
+  
+  const Thoremon = new Pokemon(900, 'Thoremon')
+
+  const newButton = document.querySelector('#newPokemon')
+  newButton.addEventListener('click', function() {
+    populateDOM(Thoremon)
+  })
+
 async function getAPIData(url) {
     try {
         const response = await fetch(url)
@@ -54,7 +68,7 @@ function fillCardFront(pokeFront, data) {
     let pic = document.createElement("img")
     pic.setAttribute('class', 'picDivs')
     let pokeNum = getPokeNumber(data.id)
-    name.textContent = data.name
+    name.textContent = `${data.name[0].toUpperCase()}${data.name.slice(1)}`
 
     pic.src = `/images/${pokeNum}.png`
 
@@ -65,7 +79,7 @@ function fillCardFront(pokeFront, data) {
 function fillCardBack(pokeBack, data) {
     pokeBack.setAttribute('class', 'card__face card__face--back')
     let pokeHP = document.createElement('p')
-    pokeHP.textContent = `HP:${data.stats[5].base_stat}`
+    // pokeHP.textContent = `HP:${data.stats[5].base_stat}`
     pokeBack.appendChild(pokeHP)
 }
 

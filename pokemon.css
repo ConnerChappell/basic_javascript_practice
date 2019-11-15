@@ -3,10 +3,11 @@ body{
 }
 h1 {
   text-align: center;
-  border-bottom: 1px dashed #000;
   margin-left: 20%;
   margin-right: 20%;
-  padding-bottom: 20px;
+  padding: 20px 0;
+  border: 10px double #000;
+  border-radius: 10px;
 }
 p {
   font-size: 16px;
@@ -26,7 +27,11 @@ main {
 
 .picDivs {
     width: 75%;
+    transition: transform .5s;
     /* height: 50%; */
+}
+.picDivs:hover {
+  transform: scale(1.25);
 }
 
 .charDivs {
@@ -45,7 +50,7 @@ main {
   .card {
     width: 100%;
     height: 100%;
-    border: 5px solid #ffde00;
+    border: 5px solid #676767;
     border-radius: 8px;
     transition: transform 1s;
     transform-style: preserve-3d;
@@ -66,9 +71,26 @@ main {
     backface-visibility: hidden;
   }
   .card__face--front {
-    
+    background-color: #fff;
   }
   .card__face--back {
-    background-color: #3b4cca;
+    background-color: #fff;
     transform: rotateY(180deg);
+  }
+
+  /* Button */
+  button#newPokemon {
+    font-family: 'Press Start 2P', Arial, Helvetica, sans-serif;
+    font-size: 1.25rem;
+    display: block;
+    margin: 0 auto;
+    padding: 1.25rem;
+    border: 10px double #000;
+    border-radius: 10px;
+  }
+  button#newPokemon:hover {
+    background-image: url("images/triangle.png");
+    background-repeat: no-repeat;
+    background-position: center left;
+    padding-left: 1.75rem;
   }

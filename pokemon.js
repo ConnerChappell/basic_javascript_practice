@@ -5,17 +5,17 @@
 
 class Pokemon {
     constructor(id, name) {
-      this.id = id
-      this.name = name
+        this.id = id
+        this.name = name
     }
-  }
-  
-  const Thoremon = new Pokemon(900, 'Thoremon')
+}
 
-  const newButton = document.querySelector('#newPokemon')
-  newButton.addEventListener('click', function() {
-    populateDOM(Thoremon)
-  })
+const Catmon = new Pokemon(900, 'Catmon')
+
+const newButton = document.querySelector('#newPokemon')
+newButton.addEventListener('click', function () {
+    populateDOM(Catmon)
+})
 
 async function getAPIData(url) {
     try {
@@ -28,23 +28,21 @@ async function getAPIData(url) {
 }
 
 // now, use the returned async data
-const theData = getAPIData(`https://pokeapi.co/api/v2/pokemon/`)
-    .then(data => {
-        for (const pokemon of data.results) {
-            getAPIData(pokemon.url)
-                .then(pokeData => {
-                    populateDOM(pokeData)
-                })
-        }
-    })
+const theData = getAPIData(`https://pokeapi.co/api/v2/pokemon/`).then(data => {
+    for (const pokemon of data.results) {
+        getAPIData(pokemon.url).then(pokeData => {
+            populateDOM(pokeData)
+        })
+    }
+})
 
 let mainArea = document.querySelector('main')
 
 function populateDOM(single_pokemon) {
-    let pokeScene = document.createElement("div")
-    let pokeCard = document.createElement("div")
-    let pokeFront = document.createElement("div")
-    let pokeBack = document.createElement("div")
+    let pokeScene = document.createElement('div')
+    let pokeCard = document.createElement('div')
+    let pokeFront = document.createElement('div')
+    let pokeBack = document.createElement('div')
 
     fillCardFront(pokeFront, single_pokemon)
     fillCardBack(pokeBack, single_pokemon)
@@ -64,11 +62,11 @@ function populateDOM(single_pokemon) {
 
 function fillCardFront(pokeFront, data) {
     pokeFront.setAttribute('class', 'charDivs card__face card__face--front')
-    let name = document.createElement("p")
-    let pic = document.createElement("img")
+    let name = document.createElement('p')
+    let pic = document.createElement('img')
     pic.setAttribute('class', 'picDivs')
     let pokeNum = getPokeNumber(data.id)
-    name.textContent = `${data.name[0].toUpperCase()}${data.name.slice(1)}`
+    name.textContent = `${data.id} ${data.name[0].toUpperCase()}${data.name.slice(1)}`
 
     pic.src = `/images/${pokeNum}.png`
 

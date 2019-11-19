@@ -14,7 +14,15 @@ const Catmon = new Pokemon(900, 'Catmon')
 
 const newButton = document.querySelector('#newPokemon')
 newButton.addEventListener('click', function () {
-    populateDOM(Catmon)
+    let pokeId = prompt("Please enter a Pokemon ID")
+    if (pokeId > 0 && pokeId <= 807) {
+    getAPIData(`https://pokeapi.co/api/v2/pokemon/${pokeId}`)
+    .then(result => {
+        populateDOM(result)
+    })
+} else {
+    alert('There are no Pokemon with that ID. Choose another one.')
+}
 })
 
 async function getAPIData(url) {
@@ -28,7 +36,7 @@ async function getAPIData(url) {
 }
 
 // now, use the returned async data
-const theData = getAPIData(`https://pokeapi.co/api/v2/pokemon/`).then(data => {
+const theData = getAPIData(`https://pokeapi.co/api/v2/pokemon?limit=25`).then(data => {
     for (const pokemon of data.results) {
         getAPIData(pokemon.url).then(pokeData => {
             populateDOM(pokeData)
@@ -68,7 +76,8 @@ function fillCardFront(pokeFront, data) {
     let pokeNum = getPokeNumber(data.id)
     name.textContent = `${data.id} ${data.name[0].toUpperCase()}${data.name.slice(1)}`
 
-    pic.src = `/images/${pokeNum}.png`
+    // pic.src = `/images/${pokeNum}.png`
+    pic.src = `https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/${pokeNum}.png`
 
     pokeFront.appendChild(name)
     pokeFront.appendChild(pic)
@@ -77,7 +86,7 @@ function fillCardFront(pokeFront, data) {
 function fillCardBack(pokeBack, data) {
     pokeBack.setAttribute('class', 'card__face card__face--back')
     let pokeHP = document.createElement('p')
-    // pokeHP.textContent = `HP:${data.stats[5].base_stat}`
+    pokeHP.textContent = `HP:${data.stats[5].base_stat}`
     pokeBack.appendChild(pokeHP)
 }
 

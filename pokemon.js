@@ -16,13 +16,13 @@ const newButton = document.querySelector('#newPokemon')
 newButton.addEventListener('click', function () {
     let pokeId = prompt("Please enter a Pokemon ID")
     if (pokeId > 0 && pokeId <= 807) {
-    getAPIData(`https://pokeapi.co/api/v2/pokemon/${pokeId}`)
-    .then(result => {
-        populateDOM(result)
-    })
-} else {
-    alert('There are no Pokemon with that ID. Choose another one.')
-}
+        getAPIData(`https://pokeapi.co/api/v2/pokemon/${pokeId}`)
+            .then(result => {
+                populateDOM(result)
+            })
+    } else {
+        alert('There are no Pokemon with that ID. Choose another one.')
+    }
 })
 
 async function getAPIData(url) {

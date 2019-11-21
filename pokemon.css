@@ -13,13 +13,13 @@ h1 {
   margin-left: 20%;
   margin-right: 20%;
   padding: 20px 0;
-  background-color: #fff;
+  background-color: #f8f8f8;
   border: 10px double #000;
   border-radius: 10px;
 }
 p {
   font-size: 16px;
-  color: #fff;
+  color: #f8f8f8;
   /* margin: 0 auto; */
   padding: 10px;
 }
@@ -76,21 +76,31 @@ main {
   backface-visibility: hidden;
 }
 .card__face--front {
-  color: #fff;
+  /* color: #fff; */
   transition: transform .5s;
 }
+.card__face--front p {
+  color: #000;
+  opacity: 0;
+  transition: all .5s;
+}
 .card__face--front:hover {
-  background-color: #616161;
-  border: 5px solid #232323;
+  background-color: #f8f8f8;
+  border: 10px double #000;
   border-radius: 5px;
   transform: scale(1.1);
 }
+.card__face--front:hover p {
+  opacity: 1;
+}
 .card__face--back {
-  color: #fff;
-  border: 5px solid #232323;
+  background-color: #f8f8f8;
+  border: 10px double #000;
   border-radius: 5px;
-  background-color: #616161;
   transform: rotateY(180deg);
+}
+.card__face--back p {
+  color: #000;
 }
 
   /* Button */

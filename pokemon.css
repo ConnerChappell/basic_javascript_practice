@@ -1,18 +1,31 @@
 body{
   font-family: 'Press Start 2P', Arial, Helvetica, sans-serif;
+  background-image: url(images/pc_storage_box.png);
+}
+.storage {
+  height: 175px;
+  padding-top: 40px;
+  background-image: url(images/pc_storage_box2.png);
+  background-position: center;
 }
 h1 {
   text-align: center;
   margin-left: 20%;
   margin-right: 20%;
   padding: 20px 0;
+  background-color: #fff;
   border: 10px double #000;
   border-radius: 10px;
 }
 p {
   font-size: 16px;
+  color: #fff;
   /* margin: 0 auto; */
   padding: 10px;
+}
+p.instructions {
+  margin: 2rem 0 2rem 0;
+  text-align: center;
 }
 
 main {
@@ -27,11 +40,6 @@ main {
 
 .picDivs {
     width: 75%;
-    transition: transform .5s;
-    /* height: 50%; */
-}
-.picDivs:hover {
-  transform: scale(1.2);
 }
 
 .charDivs {
@@ -44,54 +52,60 @@ main {
 .scene {
     width: 225px;
     height: 275px;
-    margin: 40px 0;
+    margin: 20px 0;
     perspective: 600px;
   }
-  .card {
-    width: 100%;
-    height: 100%;
-    border: 5px solid #313131;
-    border-radius: 8px;
-    transition: transform 1s;
-    transform-style: preserve-3d;
-    cursor: pointer;
-    position: relative;
-  }
-  .card.is-flipped {
-    transform: rotateY(180deg);
-  }
-  .card__face {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    font-weight: bold;
-    font-size: 40px;
-    backface-visibility: hidden;
-  }
-  .card__face--front {
-    color: #fff;
-    background-color: #616161;
-  }
-  .card__face--back {
-    color: #fff;
-    background-color: #616161;
-    transform: rotateY(180deg);
-  }
+.card {
+  width: 100%;
+  height: 100%;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  position: relative;
+}
+.card.is-flipped {
+  transform: rotateY(180deg);
+}
+.card__face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  font-weight: bold;
+  font-size: 40px;
+  backface-visibility: hidden;
+}
+.card__face--front {
+  color: #fff;
+  transition: transform .5s;
+}
+.card__face--front:hover {
+  background-color: #616161;
+  border: 5px solid #232323;
+  border-radius: 5px;
+  transform: scale(1.1);
+}
+.card__face--back {
+  color: #fff;
+  border: 5px solid #232323;
+  border-radius: 5px;
+  background-color: #616161;
+  transform: rotateY(180deg);
+}
 
   /* Button */
-  button#newPokemon {
-    font-family: 'Press Start 2P', Arial, Helvetica, sans-serif;
-    font-size: 1.25rem;
-    display: block;
-    margin: 0 auto;
-    padding: 1.25rem;
-    border: 10px double #000;
-    border-radius: 10px;
-  }
-  button#newPokemon:hover {
-    background-image: url("images/triangle.png");
-    background-repeat: no-repeat;
-    background-position: center left;
-    padding-left: 1.75rem;
-  }
+button#newPokemon {
+  font-family: 'Press Start 2P', Arial, Helvetica, sans-serif;
+  font-size: 1.25rem;
+  display: block;
+  margin: 0 auto;
+  padding: 1.25rem;
+  border: 10px double #000;
+  border-radius: 10px;
+}
+button#newPokemon:hover {
+  background-image: url("images/triangle.png");
+  background-repeat: no-repeat;
+  background-position: center left;
+  padding-left: 1.75rem;
+}

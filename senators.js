@@ -20,7 +20,7 @@ const theData = getAPIData('senators.json').then(data => {
     simpleSenators = makeSimpleMap(allSenators)
     republicans = filterSenators(simpleSenators, "R")
     democrats = filterSenators(simpleSenators, "D")
-    independents - filterSenators(simpleSenators, "ID")
+    independents = filterSenators(simpleSenators, "ID")
     populateDOM(simpleSenators)
 })
 

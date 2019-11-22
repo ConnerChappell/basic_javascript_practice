@@ -1,8 +1,3 @@
-// async function getPokemonData(url) {
-// const response = await fetch(url)
-// return await response.json()
-// }
-
 class Pokemon {
     constructor(id, name) {
         this.id = id
@@ -76,7 +71,6 @@ function fillCardFront(pokeFront, data) {
     let pokeNum = getPokeNumber(data.id)
     name.textContent = `${data.id} ${data.name[0].toUpperCase()}${data.name.slice(1)}`
 
-    // pic.src = `/images/${pokeNum}.png`
     pic.src = `https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/${pokeNum}.png`
 
     pokeFront.appendChild(name)
@@ -86,8 +80,20 @@ function fillCardFront(pokeFront, data) {
 function fillCardBack(pokeBack, data) {
     pokeBack.setAttribute('class', 'card__face card__face--back')
     let pokeHP = document.createElement('p')
+    let pokeSpeed = document.createElement('p')
+    let pokeDefense = document.createElement('p')
+    let pokeAttack = document.createElement('p')
+    let pokeType = document.createElement('p')
     pokeHP.textContent = `HP:${data.stats[5].base_stat}`
+    pokeSpeed.textContent = `Speed:${data.stats[0].base_stat}`
+    pokeDefense.textContent = `Defense:${data.stats[3].base_stat}`
+    pokeAttack.textContent = `Attack:${data.stats[4].base_stat}`
+    pokeType.textContent = `Type:${data.types[0].type.name}`
     pokeBack.appendChild(pokeHP)
+    pokeBack.appendChild(pokeSpeed)
+    pokeBack.appendChild(pokeDefense)
+    pokeBack.appendChild(pokeAttack)
+    pokeBack.appendChild(pokeType)
 }
 
 function getPokeNumber(id) {
